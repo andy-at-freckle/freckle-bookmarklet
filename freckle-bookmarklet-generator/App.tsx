@@ -91,9 +91,10 @@ const App: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center gap-8">
             <p className="order-2 md:order-1 font-medium tracking-tight">© Freckle {new Date().getFullYear()}</p>
             <div className="flex gap-8 order-1 md:order-2 uppercase tracking-[0.1em] font-bold text-[10px]">
-              <a href="#" className="hover:text-gray-600 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-gray-600 transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-gray-600 transition-colors">Trust Center</a>
+              <a href="https://www.freckle.io/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">Privacy Policy</a>
+              <a href="https://www.freckle.io/terms-of-service" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">Terms of Service</a>
+              <a href="https://www.freckle.io/dpa" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">DPA</a>
+              <a href="https://trust.freckle.io/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">Trust Center</a>
             </div>
           </div>
         </footer>
