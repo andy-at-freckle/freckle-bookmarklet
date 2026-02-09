@@ -1,0 +1,105 @@
+
+import React, { useState, useEffect, useRef } from 'react';
+import Header from './components/Header';
+import Generator from './components/Generator';
+import Walkthrough from './components/Walkthrough';
+
+const App: React.FC = () => {
+  const [hasGenerated, setHasGenerated] = useState(false);
+  const [webhookUrl, setWebhookUrl] = useState('');
+  const successRef = useRef<HTMLElement>(null);
+
+  const handleGenerated = (url: string) => {
+    setWebhookUrl(url);
+    setHasGenerated(true);
+  };
+
+  useEffect(() => {
+    if (hasGenerated && successRef.current) {
+      // Small delay to ensure the DOM has rendered the new section and styles are applied
+      const timer = setTimeout(() => {
+        const element = successRef.current;
+        if (element) {
+          // Centering logic: Scroll to the top of the success section with a slight padding
+          // A yOffset of 20 ensures the "Setup instructions" header starts near the top of the screen
+          const yOffset = 20; 
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [hasGenerated]);
+
+  const handleReset = () => {
+    setWebhookUrl('');
+    setHasGenerated(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCopyAgain = () => {
+    const code = `javascript:(function(){var w=window.open('https://yellow-truth-5279.andy-815.workers.dev?url=%27+encodeURIComponent(window.location.href)+%27&webhook=%27+encodeURIComponent(%27${webhookUrl.trim()}%27),%27_blank%27,%27width=400,height=200%27);setTimeout(function(){w.close();},1000);})();`;
+    navigator.clipboard.writeText(code);
+  };
+
+  return (
+    <div className="min-h-screen text-[#1a1a1a] selection:bg-[#7c4dff] selection:text-white pb-20 overflow-x-hidden">
+      {/* Container widened to max-w-6xl to allow the 4-column instructions to breathe */}
+      <div className="max-w-6xl mx-auto px-6 pt-12 md:pt-20 space-y-16 md:space-y-24">
+        <Header />
+
+        <main className="w-full">
+          {!hasGenerated ? (
+            <div className="space-y-20">
+              <section id="generator" className="animate-in fade-in slide-in-from-bottom-2 duration-700 fill-mode-both max-w-2xl mx-auto">
+                <Generator onGenerated={handleGenerated} initialValue={webhookUrl} />
+              </section>
+            </div>
+          ) : (
+            <section 
+              id="success-view" 
+              ref={successRef}
+              className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both"
+            >
+              <div className="pt-16 border-t border-gray-100">
+                <Walkthrough />
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+                <button
+                  onClick={handleCopyAgain}
+                  className="w-full sm:w-auto px-10 py-5 bg-white border border-gray-200 rounded-[1.25rem] font-bold text-gray-700 hover:border-[#7c4dff] hover:text-[#7c4dff] transition-all shadow-sm active:scale-95"
+                >
+                  Copy code again
+                </button>
+                <button
+                  onClick={handleReset}
+                  className="w-full sm:w-auto px-10 py-5 bg-[#7c4dff] text-white rounded-[1.25rem] font-bold shadow-lg shadow-[#7c4dff]/20 hover:bg-[#6a3de8] transition-all active:scale-95"
+                >
+                  Create new bookmarklet
+                </button>
+              </div>
+            </section>
+          )}
+        </main>
+
+        <footer className="pt-20 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-[11px] text-gray-400 gap-8">
+          <div className="flex items-baseline gap-[1px] select-none opacity-40">
+            <span className="text-[#1a1a1a] text-xl font-logo lowercase leading-none tracking-tight">freckle</span>
+            <span className="w-[3px] h-[3px] bg-[#7c4dff] rounded-full translate-y-[-1px]"></span>
+          </div>
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <p className="order-2 md:order-1 font-medium tracking-tight">© Freckle {new Date().getFullYear()}</p>
+            <div className="flex gap-8 order-1 md:order-2 uppercase tracking-[0.1em] font-bold text-[10px]">
+              <a href="#" className="hover:text-gray-600 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-gray-600 transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-gray-600 transition-colors">Trust Center</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+export default App;

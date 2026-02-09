@@ -1,0 +1,5 @@
+{
+  "name": "Freckle Bookmarklet Generator",
+  "description": "A professional tool to generate custom browser bookmarklets for sending URLs directly to Freckle webhook tables, styled with the official Freckle brand identity.",
+  "requestFramePermissions": []
+}
