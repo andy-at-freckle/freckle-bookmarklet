@@ -4,13 +4,13 @@ const Header: React.FC = () => {
   return (
     <div className="flex flex-col items-center text-center w-full">
       {/* Brand Logo */}
-      <div className="mb-8">
+      <a href="https://www.freckle.io/" target="_blank" rel="noopener noreferrer" className="mb-8">
         <img 
           src="/logo.svg" 
           alt="Freckle" 
-          className="h-8 w-auto"
+          className="h-8 w-auto hover:opacity-80 transition-opacity"
         />
-      </div>
+      </a>
       
       <div className="space-y-6 w-full">
         <div className="space-y-4">
