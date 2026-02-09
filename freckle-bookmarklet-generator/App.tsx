@@ -83,10 +83,10 @@ const App: React.FC = () => {
         </main>
 
         <footer className="pt-20 border-t border-gray-100 text-[11px] text-gray-400">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <p className="font-medium tracking-tight order-2 md:order-1">© Freckle {new Date().getFullYear()}</p>
+          <div className="relative flex flex-col md:flex-row justify-between items-center gap-8">
+            <p className="font-medium tracking-tight">© Freckle {new Date().getFullYear()}</p>
             
-            <div className="order-1 md:order-2">
+            <div className="absolute left-1/2 -translate-x-1/2">
               <img 
                 src="/logo.svg" 
                 alt="Freckle" 
@@ -94,7 +94,7 @@ const App: React.FC = () => {
               />
             </div>
             
-            <div className="flex gap-8 text-[11px] order-3">
+            <div className="flex gap-8 text-[11px]">
               <a href="https://www.freckle.io/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">Privacy Policy</a>
               <a href="https://www.freckle.io/terms-of-service" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">Terms of Service</a>
               <a href="https://www.freckle.io/dpa" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">DPA</a>
