@@ -3,10 +3,13 @@ import React from 'react';
 const Header: React.FC = () => {
   return (
     <div className="flex flex-col items-center text-center w-full">
-      {/* Brand Logo - Recreated to match official identity */}
-      <div className="flex items-baseline gap-[4px] mb-8 select-none group">
-        <span className="text-[#1a1a1a] text-[42px] font-logo lowercase leading-none tracking-tight">freckle</span>
-        <span className="w-[6px] h-[6px] bg-[#7c4dff] rounded-full translate-y-[-2px]"></span>
+      {/* Brand Logo */}
+      <div className="mb-8">
+        <img 
+          src="/logo.svg" 
+          alt="Freckle" 
+          className="h-8 w-auto"
+        />
       </div>
       
       <div className="space-y-6 w-full">
