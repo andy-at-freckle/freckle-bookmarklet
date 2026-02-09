@@ -87,10 +87,11 @@ const App: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <p className="font-medium tracking-tight">© Freckle {new Date().getFullYear()}</p>
             
-            <div className="flex items-baseline gap-[1px] select-none">
-              <span className="text-[#1a1a1a] text-xl font-logo lowercase leading-none tracking-tight">freckle</span>
-              <span className="w-[3px] h-[3px] bg-[#7c4dff] rounded-full translate-y-[-1px]"></span>
-            </div>
+            <img 
+              src="/logo.svg" 
+              alt="Freckle" 
+              className="h-6 w-auto"
+            />
             
             <div className="flex gap-8 text-[11px]">
               <a href="https://www.freckle.io/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">Privacy Policy</a>
